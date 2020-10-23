@@ -1,0 +1,41 @@
+{% extends "auctions/layout.html" %}
+{% block body %}
+<div class="container">
+    <h2>Write whatever you want...</h2>
+
+</div>
+<div class="container">
+    <form action="{% url 'submit' %}" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Title</label>
+          <input class="form-control" id="exampleFormControlInput1" placeholder="Give a Topic name" name="title" required>
+        </div>
+
+          <div class="form-group">
+            <label for="exampleFormControlSelect1">Topic</label>
+            <select class="form-control" id="exampleFormControlSelect1" name="category" required>
+              <option>Fashion</option>
+              <option>Science</option>
+              <option>Tech</option>
+              <option>Astronomy</option>
+              <option>General</option>
+              <option>Biology</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Image link </label>
+            <input class="form-control" id="exampleFormControlInput1" placeholder="https://ABC.jpg... (optional)" name="link">
+          </div>
+
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1">Blog</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" placeholder="Describe your vision here" name="description" required></textarea>
+          </div>
+
+        <button class="btn btn-outline-info" type="submit">Post</button>
+
+      </form>
+</div>
+{% endblock %}

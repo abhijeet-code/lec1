@@ -1,0 +1,27 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+<div class="container">
+    <center><h2><u><i>All Blogs to read...</i></u></h2></center>
+
+</div>
+<div class="row" id="listings">
+    {% for i in items %}
+    <div class="card-group" style="max-width: 350px;"  id="card-listings">
+        <div class="card h-100 my-card-style">
+          <div class="card mb-3">
+            <img src="{{i.link}}" class="card-img-top" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body" >
+              <h5 class="card-title">{{i.title}}</h5>
+              <p><b>Author:</b> {{i.owner}}</p>
+              <a href="{% url 'listingpage' i.id %}"><button class="btn btn-outline-success">Explore Now!</button></a>
+              <p class="card-text"><small class="text-muted">{{i.time}}</small></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+</div>
+{% endblock %}

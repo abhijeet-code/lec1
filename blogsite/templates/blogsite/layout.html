@@ -1,0 +1,76 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+        <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+        <link href="{% static 'auctions/styles.css' %}" rel="stylesheet">
+
+            <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+            <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        <title>{% block title %}BlogginG{% endblock %}</title>
+
+    </head>
+    <body  style="background-color: #e3f2fd";>
+        <div >
+            <!-- Image and text -->
+             <nav class="navbar navbar-expand-md  navbar-dark bg-dark " >
+                <a class="navbar-brand" href="#">
+                <img src="{% static 'auctions/apple.png'%}" width="30" height="30" class="d-inline-block align-top" alt="">
+                           ABHI-Blogs
+                </a>
+                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                      data-target="#example-navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="example-navbar-collapse">
+                <ul class="navbar-nav nav ">
+                    <li class="nav-item ">
+                        <a class="nav-link" href="{% url 'index' %}">Blogs <span class="sr-only">(current)</span></a>
+                    </li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item ">
+                        <a class="nav-link " href="{% url 'categories' %}">Topics</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'watchlistpage' user.username %}"> Achived <span class="badge badge-success">{{wcount}}</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'create' %}">Write a Blog..</a>
+                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'login' %}">Log In</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'register' %}">Register</a>
+                        </li>
+                    {% endif %}
+                </ul>
+              </div>
+             </nav>
+             <div class="float-right" >
+                 {% if user.is_authenticated %}
+                     <p class="text-info"> Signed in as <strong>{{ user.username }}</strong>.</p>
+                 {% else %}
+                   <p class="text-info">  Not signed in.</p>
+                 {% endif %}
+             </div>
+
+
+        </div>
+        <hr>
+        {% block body %}
+        {% endblock %}
+    </body>
+</html>
